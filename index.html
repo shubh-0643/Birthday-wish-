@@ -14,7 +14,7 @@
     }
 
     h1 {
-      font-size: 36px;
+      font-size: 34px;
       color: #ff4da6;
       text-shadow: 0 0 20px #ff4da6;
     }
@@ -25,16 +25,16 @@
     }
 
     .cake-img {
-      width: 250px;
+      width: 280px;
       margin: 20px;
       border-radius: 20px;
-      box-shadow: 0 0 40px orange;
-      animation: glow 1s infinite alternate;
+      box-shadow: 0 0 50px pink;
+      animation: glow 1.5s infinite alternate;
     }
 
     @keyframes glow {
-      from { box-shadow: 0 0 10px yellow; }
-      to { box-shadow: 0 0 40px red; }
+      from { box-shadow: 0 0 15px pink; }
+      to { box-shadow: 0 0 50px red; }
     }
 
     .msg {
@@ -46,13 +46,15 @@
     }
 
     button {
-      padding: 10px 20px;
+      padding: 12px 25px;
       font-size: 18px;
-      background: pink;
+      background: #ff4da6;
+      color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
-      margin: 10px;
+      margin: 15px;
+      box-shadow: 0 0 20px pink;
     }
 
     canvas {
@@ -66,10 +68,11 @@
 
 <body>
 
-<h1>🎉 Happy Birthday Dear Able Allu 🎉</h1>
+<h1>🎉 Happy Birthday Dear Uble Allu 🎉</h1>
 <div class="age">🎂 17 Years Old 🎂</div>
 
-<img class="cake-img" src="https://i.imgur.com/7yUvePI.png">
+<!-- 🎂 Cake -->
+<img class="cake-img" src="cake.png">
 
 <br>
 
@@ -97,7 +100,7 @@ Waqt badalta rahta hai, par hamara rishta na badle.<br><br>
 
 Tu meri zindagi mein hamesha mere paas rahe ❤️<br><br>
 
-<h2>🎉 Happy Birthday Dear Able Allu 🐤 🎉</h2>
+<h2>🎉 Happy Birthday Dear Uble Allu 🐤 🎉</h2>
 
 <h3>⚘️ I Love You ⚘️</h3>
 
@@ -105,8 +108,9 @@ Tu meri zindagi mein hamesha mere paas rahe ❤️<br><br>
 
 </div>
 
+<!-- 🎶 Music -->
 <audio id="music" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+  <source src="khaat.mp3" type="audio/mpeg">
 </audio>
 
 <canvas id="confetti"></canvas>
