@@ -20,24 +20,28 @@
       z-index: -1;
     }
 
-    /* ⚡ Flicker Lighting Effect */
-    h1 {
-      font-size: 34px;
-      color: #fff;
-      animation: flicker 1.5s infinite alternate;
+    /* 💖 ALL TEXT GLOW */
+    h1, h2, h3, .age, .msg {
+      animation: glowText 2s infinite alternate;
     }
 
-    @keyframes flicker {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    @keyframes glowText {
+      0% {
         text-shadow:
           0 0 5px #ff4da6,
           0 0 10px #ff4da6,
-          0 0 20px #ff4da6,
-          0 0 40px #ff4da6;
+          0 0 20px #ff4da6;
       }
-      20%, 24%, 55% {
-        text-shadow: none;
+      100% {
+        text-shadow:
+          0 0 10px #ff66cc,
+          0 0 20px #ff66cc,
+          0 0 40px #ff66cc;
       }
+    }
+
+    h1 {
+      font-size: 34px;
     }
 
     .age {
@@ -75,19 +79,19 @@
       border-radius: 12px;
       cursor: pointer;
       margin: 15px;
+      box-shadow: 0 0 20px #ff4da6;
     }
   </style>
 </head>
 
 <body>
 
-<!-- 🌧️ Rain Effect -->
+<!-- ❄️ Pink Snow -->
 <canvas id="rain"></canvas>
 
 <h1>🎉 Happy Birthday Dear Uble Allu 🎉</h1>
 <div class="age">🎂 17 Years Old 🎂</div>
 
-<!-- 🎂 Image -->
 <img class="cake-img" src="Img.123.png">
 
 <br>
@@ -95,7 +99,6 @@
 <button onclick="playMusic()">🎶 Play Music</button>
 
 <div class="msg">
-
 Teri hansi meri duniya ka sabse haseen geet hai,<br><br>
 Tera saath hi meri har khushi ki jeet hai,<br><br>
 
@@ -118,10 +121,8 @@ Tu meri zindagi mein hamesha mere paas rahe ❤️<br><br>
 <h2>🎉 Happy Birthday Dear Uble Allu 🐤 🎉</h2>
 <h3>⚘️ I Love You ⚘️</h3>
 <h2>Uummuuuaaahhhhhh 😘</h2>
-
 </div>
 
-<!-- 🎶 Music -->
 <audio id="music" loop>
   <source src="khaat.mp3" type="audio/mpeg">
 </audio>
@@ -132,42 +133,62 @@ function playMusic() {
   document.getElementById("music").play();
 }
 
-// 🌧️ Rain Effect
+// ❄️💖 Pink Snowfall
 const canvas = document.getElementById("rain");
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let rainDrops = [];
+let drops = [];
 
-for (let i = 0; i < 120; i++) {
-  rainDrops.push({
+for (let i = 0; i < 150; i++) {
+  drops.push({
     x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height
+    y: Math.random() * canvas.height,
+    r: Math.random() * 3 + 1,
+    d: Math.random()
   });
 }
 
-function drawRain() {
+let angle = 0;
+
+function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "lightblue";
+  ctx.fillStyle = "#ff4da6";
+  ctx.beginPath();
 
-  for (let i = 0; i < rainDrops.length; i++) {
-    let drop = rainDrops[i];
-    ctx.fillRect(drop.x, drop.y, 2, 15);
-
-    drop.y += 6;
-
-    if (drop.y > canvas.height) {
-      drop.y = 0;
-      drop.x = Math.random() * canvas.width;
-    }
+  for (let i = 0; i < drops.length; i++) {
+    let p = drops[i];
+    ctx.moveTo(p.x, p.y);
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
   }
 
-  requestAnimationFrame(drawRain);
+  ctx.fill();
+  update();
 }
 
-drawRain();
+function update() {
+  angle += 0.01;
+
+  for (let i = 0; i < drops.length; i++) {
+    let p = drops[i];
+
+    p.y += Math.cos(angle + p.d) + 1 + p.r / 2;
+    p.x += Math.sin(angle) * 2;
+
+    if (p.y > canvas.height) {
+      drops[i] = {
+        x: Math.random() * canvas.width,
+        y: 0,
+        r: p.r,
+        d: p.d
+      };
+    }
+  }
+}
+
+setInterval(draw, 33);
 </script>
 
 </body>
