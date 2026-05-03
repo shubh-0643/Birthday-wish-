@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happy 17th Birthday 🎉</title>
+
+  <style>
+    body {
+      text-align: center;
+      background: black;
+      color: white;
+      font-family: Arial;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #ff4da6;
+      text-shadow: 0 0 20px #ff4da6;
+    }
+
+    .age {
+      font-size: 22px;
+      color: gold;
+    }
+
+    .cake-img {
+      width: 250px;
+      margin: 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 40px orange;
+      animation: glow 1s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 10px yellow; }
+      to { box-shadow: 0 0 40px red; }
+    }
+
+    .msg {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #ffd1dc;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background: pink;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🎉 Happy Birthday Dear Able Allu 🎉</h1>
+<div class="age">🎂 17 Years Old 🎂</div>
+
+<img class="cake-img" src="https://i.imgur.com/7yUvePI.png">
+
+<br>
+
+<button onclick="playMusic()">🎶 Play Music</button>
+
+<div class="msg">
+
+Teri hansi meri duniya ka sabse haseen geet hai,<br><br>
+
+Tera saath hi meri har khushi ki jeet hai,<br><br>
+
+Rab se bas itni si guzarish hai aaj ke din,<br>
+Tu hamesha muskuraati rahe kyunki teri har muskaan hi meri sabse badi jeet hai.<br><br>
+
+Bas ek dua hai, har pal tera haath mere haath pe rahe,<br>
+Har mod pe tera saaya mere saath rahe.<br><br>
+
+Zindagi ke safar mein kabhi doori na aaye,<br>
+Tu paas rahe, toh har mushkil bhi aasaan si baat rahe.<br><br>
+
+Har janam din tum yunhi mere saath rahe,<br>
+Har saal hum dono ka pyar aur khaas rahe.<br><br>
+
+Waqt badalta rahta hai, par hamara rishta na badle.<br><br>
+
+Tu meri zindagi mein hamesha mere paas rahe ❤️<br><br>
+
+<h2>🎉 Happy Birthday Dear Able Allu 🐤 🎉</h2>
+
+<h3>⚘️ I Love You ⚘️</h3>
+
+<h2>Uummuuuaaahhhhhh 😘</h2>
+
+</div>
+
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<canvas id="confetti"></canvas>
+
+<script>
+function playMusic() {
+  document.getElementById("music").play();
+}
+
+// CONFETTI
+const canvas = document.getElementById("confetti");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let pieces = [];
+for (let i = 0; i < 120; i++) {
+  pieces.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 6 + 2,
+    d: Math.random() * 100
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "pink";
+  ctx.beginPath();
+  for (let i = 0; i < pieces.length; i++) {
+    let p = pieces[i];
+    ctx.moveTo(p.x, p.y);
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+  }
+  ctx.fill();
+  update();
+}
+
+function update() {
+  for (let i = 0; i < pieces.length; i++) {
+    let p = pieces[i];
+    p.y += Math.cos(p.d) + 1;
+    if (p.y > canvas.height) {
+      p.y = 0;
+      p.x = Math.random() * canvas.width;
+    }
+  }
+}
+
+setInterval(draw, 20);
+</script>
+
+</body>
+</html>
