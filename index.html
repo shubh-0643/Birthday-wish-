@@ -10,12 +10,34 @@
       color: white;
       font-family: Arial;
       padding: 20px;
+      overflow: hidden;
     }
 
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    /* ⚡ Flicker Lighting Effect */
     h1 {
       font-size: 34px;
-      color: #ff4da6;
-      text-shadow: 0 0 20px #ff4da6;
+      color: #fff;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow:
+          0 0 5px #ff4da6,
+          0 0 10px #ff4da6,
+          0 0 20px #ff4da6,
+          0 0 40px #ff4da6;
+      }
+      20%, 24%, 55% {
+        text-shadow: none;
+      }
     }
 
     .age {
@@ -59,10 +81,13 @@
 
 <body>
 
+<!-- 🌧️ Rain Effect -->
+<canvas id="rain"></canvas>
+
 <h1>🎉 Happy Birthday Dear Uble Allu 🎉</h1>
 <div class="age">🎂 17 Years Old 🎂</div>
 
-<!-- 🎂 Cake -->
+<!-- 🎂 Image -->
 <img class="cake-img" src="Img.123.png">
 
 <br>
@@ -102,9 +127,47 @@ Tu meri zindagi mein hamesha mere paas rahe ❤️<br><br>
 </audio>
 
 <script>
+// 🎶 Music
 function playMusic() {
   document.getElementById("music").play();
 }
+
+// 🌧️ Rain Effect
+const canvas = document.getElementById("rain");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let rainDrops = [];
+
+for (let i = 0; i < 120; i++) {
+  rainDrops.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height
+  });
+}
+
+function drawRain() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "lightblue";
+
+  for (let i = 0; i < rainDrops.length; i++) {
+    let drop = rainDrops[i];
+    ctx.fillRect(drop.x, drop.y, 2, 15);
+
+    drop.y += 6;
+
+    if (drop.y > canvas.height) {
+      drop.y = 0;
+      drop.x = Math.random() * canvas.width;
+    }
+  }
+
+  requestAnimationFrame(drawRain);
+}
+
+drawRain();
 </script>
 
 </body>
